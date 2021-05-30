@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div id="app">
+            <div class="product">
+                <div class="row text-center mt-5">
+                    <div class="col-md-6 text">
+                        <div class="product-img">
+                            <img class="img" :src="image" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-6 text">
+                        <h1>{{ product }}</h1> 
+                        <h4>{{ description }}</h4>
+                        <div>
+                            <p v-if="inStock">In Stock</p>
+                            <p v-else>Out of Stock</p>
+
+
+                            <ul> 
+                                <li class="text-center" v-for="detail in details">{{detail}}</li>
+                            </ul>
+
+                            <div v-for="variant in variants" 
+                            :key="variant.variantId"
+                            class="color-box" 
+                            :style="{ backgroundColor: variant.variantColor  }" @mouseover="updateProduct(variant.variantImage)">
+                            </div>
+
+                            <ul>
+                                <li class="text-center" v-for="size in sizes">{{ size }}</li>
+                            </ul>
+
+                        </div>
+                        <button @click="addToCart" class="btn btn-primary">Add To Cart</button>
+                        <button @click="removeFromCart" class="btn btn-danger">Remove From Cart</button>
+                        <button @click="clearCart" class="btn btn-success">Clear Cart</button>
+                        <div class="cart">
+                            <p>Cart ({{cart}})</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
